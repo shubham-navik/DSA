@@ -1,0 +1,59 @@
+#include<stdio.h>
+
+
+typedef struct PriorityQ{
+    int data;
+    int pri;
+}priority;
+
+priority get_Max(priority * pq,int n){
+    if(n==1)
+    return pq[0];
+    else{
+        priority max=pq[0];
+       for(int i=0;i<n;i++){
+         if(pq[i].pri>max.pri){
+                max=pq[i];
+            }
+       }
+       return max;
+    }
+}
+
+void increase_priority(priority *pq,int i,int new_pri){
+    if(pq[i].pri>=new_pri)
+    return;
+    else{
+        pq[i].pri=new_pri;
+    }
+    
+
+}
+
+
+
+int main(){
+    priority pq[15];
+       int n;
+    printf("Enter the no of process\n");
+    scanf("%d",&n);
+    for(int i=0;i<n;i++){
+        printf("Emter data  & it\' priority  ");
+        scanf("%d",&pq[i].data);
+        scanf("%d",&pq[i].pri);
+    }
+    priority temp=get_Max(pq,n);
+    printf("Maximum priority of data %d  it\'s priority is  %d ",temp.data  ,temp.pri);
+    increase_priority(pq,2,10);
+
+printf("\nAfter changing priority\n");
+    printf("\ndata\t|\tpriority\n");
+    for(int i=0;i<n;i++){
+        printf("%d\t|\t%d\n",pq[i].data,pq[i].pri);
+    }
+    temp=get_Max(pq,n);
+    printf("Maximum priority of data %d  it\'s priority is  %d ",temp.data  ,temp.pri);
+
+
+    return 0;
+}
